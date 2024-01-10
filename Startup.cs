@@ -29,6 +29,8 @@ namespace admin_cms
             services.AddControllersWithViews();
             JToken jAppSettings = JToken.Parse(File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "appsettings.json")));
             services.AddDbContext<ContextoCms>(options => options.UseSqlServer(jAppSettings["ConexaoSql"].ToString()));
+            services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +50,8 @@ namespace admin_cms
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
