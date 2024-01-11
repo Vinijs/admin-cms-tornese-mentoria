@@ -7,8 +7,7 @@ Microsoft.EntityFrameworkCore.SqlServer -o Models -f -c ContextoLoja1
 
 --dotnet tool install -g dotnet-aspnet-codegenerator
 
--- dotnet aspnet-codegenerator controller -name AdministradoresController -m Cliente -dc
-ContextoCms --relativeFoldePath Controllers --useDefaultlayout
+-- dotnet aspnet-codegenerator controller -name AdministradoresController -m Cliente -dc ContextoCms --relativeFolderPath Controllers --useDefaultLayout
 
 -- dotnet add package Microsoft.EntityFrameworkCore --version 7.0.14
 

@@ -17,6 +17,7 @@ namespace admin_cms.Models.Infraestrutura.Database
     }
 
     public DbSet<Administrador> Administradores { get; set; }
+    public DbSet<Pagina> Paginas { get; set; }
     
   }
 }
