@@ -19,20 +19,9 @@ namespace admin_cms.Models.Infraestrutura.Autenticacao
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (string.IsNullOrEmpty(filterContext.HttpContext.Request.Cookies["alunos"]))
+            if (string.IsNullOrEmpty(filterContext.HttpContext.Request.Cookies["adm_cms"]))
             {
-                //if( string.IsNullOrEmpty(filterContext.HttpContext.Session.GetString("alunos")) ){
-                filterContext.HttpContext.Response.Redirect("/");
-
-                // filterContext.Result = new RedirectToRouteResult(
-                //             new RouteValueDictionary(
-                //             new
-                //             {
-                //                 area = "",
-                //                 controller = "Home",
-                //                 action = "Index"
-                //             }));
-
+                filterContext.HttpContext.Response.Redirect("/login");
                 return;
             }
             base.OnActionExecuting(filterContext);
