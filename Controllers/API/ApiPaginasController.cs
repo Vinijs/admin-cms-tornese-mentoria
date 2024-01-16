@@ -11,11 +11,11 @@ using admin_cms.Models.Infraestrutura.Autenticacao;
 
 namespace admin_cms.Controllers.API
 {
-    public class PaginasController : ControllerBase
+    public class ApiPaginasController : ControllerBase
     {
         private readonly ContextoCms _context;
 
-        public PaginasController(ContextoCms context)
+        public ApiPaginasController(ContextoCms context)
         {
             _context = context;
         }

@@ -26,11 +26,10 @@ namespace admin_cms
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddSession();
             services.AddControllersWithViews();
             JToken jAppSettings = JToken.Parse(File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "appsettings.json")));
             services.AddDbContext<ContextoCms>(options => options.UseSqlServer(jAppSettings["ConexaoSql"].ToString()));
-            services.AddSession();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +50,13 @@ namespace admin_cms
 
             app.UseRouting();
 
-            app.UseSession();
+            // app.UseSession();
+
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            );
 
             app.UseAuthorization();
 

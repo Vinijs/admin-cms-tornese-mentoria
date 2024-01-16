@@ -22,6 +22,7 @@ namespace admin_cms.Controllers
         }
 
         // GET: Administradores
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
               return View(await _context.Administradores.ToListAsync());
@@ -30,7 +31,7 @@ namespace admin_cms.Controllers
         // GET: Administradores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Administradores == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -70,7 +71,7 @@ namespace admin_cms.Controllers
         // GET: Administradores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Administradores == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -121,7 +122,7 @@ namespace admin_cms.Controllers
         // GET: Administradores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Administradores == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -141,23 +142,16 @@ namespace admin_cms.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Administradores == null)
-            {
-                return Problem("Entity set 'ContextoCms.Administradores'  is null.");
-            }
             var administrador = await _context.Administradores.FindAsync(id);
-            if (administrador != null)
-            {
-                _context.Administradores.Remove(administrador);
-            }
-            
+            _context.Administradores.Remove(administrador);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AdministradorExists(int id)
         {
-          return _context.Administradores.Any(e => e.Id == id);
+            return _context.Administradores.Any(e => e.Id == id);
         }
+
     }
 }
