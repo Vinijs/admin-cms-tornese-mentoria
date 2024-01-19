@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using admin_cms.Models.Dominio.Entidades;
 using admin_cms.Models.Infraestrutura.Database;
 using admin_cms.Models.Infraestrutura.Autenticacao;
+using X.PagedList;
+using admin_cms.Models.Dominio.Services;
 
 namespace admin_cms.Controllers.API
 {
@@ -23,9 +25,9 @@ namespace admin_cms.Controllers.API
         // GET: Paginas
         [HttpGet]
         [Route("/api/paginas.json")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-              return StatusCode(200, await _context.Paginas.ToListAsync());
+              return StatusCode(200, await _context.Paginas.ToPagedListAsync(page, PaginaService.ITENS_POR_PAGINA));
         }
 
         [HttpPost]
