@@ -5,9 +5,11 @@ using System.Net;
 using Microsoft.AspNetCore.CookiePolicy;
 using admin_cms.Models.Infraestrutura.Autenticacao;
 using admin_cms.Models.Infraestrutura.Database;
+using Microsoft.AspNetCore.Authorization;
 
 namespace admin_cms.Controllers;
 
+[AllowAnonymous]
 public class LoginController : Controller
 {
     private readonly ILogger<LoginController> _logger;
