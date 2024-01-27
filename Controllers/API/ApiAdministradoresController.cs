@@ -65,11 +65,16 @@ namespace admin_cms.Controllers.API
             string path = $"/tmp/{file}";
             System.IO.File.WriteAllBytes(path, Convert.FromBase64String(administrador.Imagem.Replace("data:image/jpeg;base64,", "")));
             administrador.Imagem = uploadToS3(path, file);
-            
+
             _context.Administradores.Update(administrador);
             await _context.SaveChangesAsync();
             return StatusCode(201, administrador);
         }
+
+        //Colocar nas variáveis de ambiente
+        //bucket = aulatornese
+        //access key = AKIA3DVZFLJH30JVZNKB
+        //Secret key = cEoCNgl/wMicS1ekhTpHbE4xqiVCypYSfw7vPETE
 
         private string uploadToS3(string filePath, string file)
         {
